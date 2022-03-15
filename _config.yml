@@ -1,0 +1,5 @@
+theme: jekyll-theme-minimal
+title: Refresh View (F5) (D-Bus)
+description: A KDE Plasma Dolphin Service Menu
+logo: https://raw.githubusercontent.com/c-hartmann/refresh-view-f5-dbus/main/assets/images/refresh-view-f5-dbus-logo.png
+show_downloads: true
