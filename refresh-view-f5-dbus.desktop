@@ -1,0 +1,52 @@
+#
+# 	servicemenus-refresh-view-f5-dbus.desktop Version 0.9.0
+# 	Copyright (C) 2022 Christian Hartmann <hartmann.christian@gmail.com>
+#
+# 	This program is free software: you can redistribute it and/or modify
+# 	it under the terms of the GNU General Public License as published by
+# 	the Free Software Foundation, either version 3 of the License, or
+# 	(at your option) any later version.
+#
+# 	This program is distributed in the hope that it will be useful,
+# 	but WITHOUT ANY WARRANTY; without even the implied warranty of
+# 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# 	GNU General Public License for more details.
+#
+# 	You should have received a copy of the GNU General Public License
+# 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+[Desktop Entry]
+Type=Service
+MimeType=inode/directory;
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+Icon=view-refresh-symbolic
+Actions=RefreshView
+TryExec=qdbus
+
+[Desktop Action RefreshView]
+Name="Refresh (F5)
+Name[ar]=التجديد (F5)
+Name[az]=Yapon (F5)
+Name[de]=Aktualisieren (F5)
+Name[en]=Refresh (F5)
+Name[es]=
+Name[fi]=Virkistys (F5)
+Name[fr]=Rafraîchissement (F5)"
+Name[ga]=Athraigh (F5)
+Name[hi]=ताज़ा (F5)
+Name[hu]=Friss (F5)
+Name[id]=
+Name[it]=Rifiuti (F5)
+Name[ja]=リフレッシュ(F5)
+Name[ko]=새로 고침 (F5)
+Name[nl]=Verfrissing (F5)
+Name[pl]=
+Name[pt]=
+Name[uk]=
+Name[vi]=Làm mới (F5)
+Name[ru]=Рефредш (F5)
+Name[sv]=
+Name[zh]=
+Icon=view-refresh
+Exec=bash -c 'for pid in $(pgrep dolphin) ; do isactive=false ; sname="org.kde.dolphin-$pid" ; isactive=$( qdbus "$sname" "/dolphin/Dolphin_1" "org.qtproject.Qt.QWidget.isActiveWindow" ) ; $isactive && qdbus "$sname" "/dolphin/Dolphin_1/actions/view_redisplay"  "org.qtproject.Qt.QAction.trigger" ; done'
