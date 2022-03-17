@@ -30,7 +30,7 @@ TryExec=qdbus
 
 [Desktop Action RefreshView]
 Name="Refresh	F5
-Name[ar]=F5	أعد التحميل
+Name[ar]=أعد التحميل	F5
 Name[ast]=Recargar	F5
 Name[az]=Təkrarlamaq	F5
 Name[be]=Перазагрузіць	F5
@@ -46,12 +46,12 @@ Name[eo]=Reŝargi	F5
 Name[es]=Recargar	F5
 Name[et]=Laadi uuesti	F5
 Name[eu]=Birkargatu	F5
-Name[fa]=F5	بارگذاری مجدد
+Name[fa]=بارگذاری مجدد	F5
 Name[fi]=Päivitä	F5
 Name[fr]=Recharger	F5
 Name[ga]=Athluchtaigh	F5
 Name[gl]=Cargar de novo	F5
-Name[he]=F5	טעינה מחדש
+Name[he]=טעינה מחדש	F5
 Name[hi]=री-लोड	F5
 Name[hr]=Učitaj ponovno	F5
 Name[hu]=Újratöltés	F5
@@ -86,11 +86,12 @@ Name[sv]=Uppdatera	F5
 Name[ta]=மீளேற்று	F5
 Name[tg]=Бозсозӣ	F5
 Name[tr]=Yeniden Yükle	F5
-Name[ug]=F5	قايتا يۈكلە
+Name[ug]=قايتا يۈكلە	F5
 Name[uk]=Перезавантажити	F5
 Name[vi]=Tải lại	F5
 Name[wa]=Ritcherdjî	F5
 Name[zh_CN]=重新加载	F5
 Name[zh_TW]=重新載入	F5
 Icon=view-refresh
-Exec=bash -c 'for pid in $(pgrep dolphin) ; do isactive=false ; sname="org.kde.dolphin-$pid" ; isactive=$( qdbus "$sname" "/dolphin/Dolphin_1" "org.qtproject.Qt.QWidget.isActiveWindow" ) ; $isactive && qdbus "$sname" "/dolphin/Dolphin_1/actions/view_redisplay"  "org.qtproject.Qt.QAction.trigger" ; done'
+Exec=bash -c 'for pid in $( pgrep dolphin ) ; do isactive=false ; sname="org.kde.dolphin-$pid" ; isactive=$( qdbus "$sname" "/dolphin/Dolphin_1" "org.qtproject.Qt.QWidget.isActiveWindow" ) ; $isactive && qdbus "$sname" "/dolphin/Dolphin_1/actions/view_redisplay"  "org.qtproject.Qt.QAction.trigger" ; done'
+Exec=bash -c 'for sname in $( qdbus --session "org.kde.dolphin-*" ) ; do isactive=false ; isactive=$( qdbus "$sname" "/dolphin/Dolphin_1" "org.qtproject.Qt.QWidget.isActiveWindow" ) ; $isactive && qdbus "$sname" "/dolphin/Dolphin_1/actions/view_redisplay"  "org.qtproject.Qt.QAction.trigger" ; done'
