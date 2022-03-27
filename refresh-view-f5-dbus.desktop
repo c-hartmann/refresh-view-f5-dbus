@@ -93,5 +93,4 @@ Name[wa]=Ritcherdjî	F5
 Name[zh_CN]=重新加载	F5
 Name[zh_TW]=重新載入	F5
 Icon=view-refresh
-Exec=bash -c 'for pid in $( pgrep dolphin ) ; do isactive=false ; sname="org.kde.dolphin-$pid" ; isactive=$( qdbus "$sname" "/dolphin/Dolphin_1" "org.qtproject.Qt.QWidget.isActiveWindow" ) ; $isactive && qdbus "$sname" "/dolphin/Dolphin_1/actions/view_redisplay"  "org.qtproject.Qt.QAction.trigger" ; done'
 Exec=bash -c 'for sname in $( qdbus --session "org.kde.dolphin-*" ) ; do isactive=false ; isactive=$( qdbus "$sname" "/dolphin/Dolphin_1" "org.qtproject.Qt.QWidget.isActiveWindow" ) ; $isactive && qdbus "$sname" "/dolphin/Dolphin_1/actions/view_redisplay"  "org.qtproject.Qt.QAction.trigger" ; done'
