@@ -1,5 +1,5 @@
 #
-# 	servicemenus-refresh-view-f5-dbus.desktop Version 0.9.1
+# 	servicemenus-refresh-view-f5-dbus.desktop Version 0.9.2
 # 	Copyright (C) 2022 Christian Hartmann <hartmann.christian@gmail.com>
 #
 #       SPDX-FileCopyrightText: 2022 Christian Hartmann <hartmann.christian@gmail.com>
@@ -21,12 +21,14 @@
 #
 
 [Desktop Entry]
+Name=Refresh View (F5)
 Type=Service
 MimeType=inode/directory;
 X-KDE-ServiceTypes=KonqPopupMenu/Plugin
 Icon=view-refresh-symbolic
-Actions=RefreshView
-TryExec=qdbus
+InitialPreference=80
+Actions=RefreshView;
+# TryExec=$qdbus
 
 [Desktop Action RefreshView]
 Name="Refresh	F5
@@ -93,4 +95,4 @@ Name[wa]=Ritcherdjî	F5
 Name[zh_CN]=重新加载	F5
 Name[zh_TW]=重新載入	F5
 Icon=view-refresh
-Exec=bash -c 'for sname in $( qdbus --session "org.kde.dolphin-*" ) ; do isactive=false ; isactive=$( qdbus "$sname" "/dolphin/Dolphin_1" "org.qtproject.Qt.QWidget.isActiveWindow" ) ; $isactive && qdbus "$sname" "/dolphin/Dolphin_1/actions/view_redisplay"  "org.qtproject.Qt.QAction.trigger" ; done'
+Exec=bash -c 'qdbus_avail=($(type -p qdbus qdbus6 qdbus5 qdbus-qt6 qdbus-qt5)); qdbus=${qdbus_avail[0]}; [[ -z "$qdbus" ]] && kdialog --error "qdbus command not found" && exit 1; for sname in $($qdbus --session "org.kde.dolphin-*") ; do isactive=false ; isactive=$( $qdbus "$sname" "/dolphin/Dolphin_1" "org.qtproject.Qt.QWidget.isActiveWindow" ) ; $isactive && $qdbus "$sname" "/dolphin/Dolphin_1/actions/view_redisplay"  "org.qtproject.Qt.QAction.trigger" ; done'
